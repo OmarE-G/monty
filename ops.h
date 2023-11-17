@@ -1,7 +1,11 @@
+#ifndef OPS_H
+#define OPS_H
 #include <stdio.h>
 #include "monty.h"
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
+
 
 /**
  * push - p
@@ -10,7 +14,7 @@
  */
 void push(int value, stack_t **stack)
 {
-	stack_t *new_node = malloc(sizeof(stack_t));
+	stack_t *new_node = (stack_t *) malloc(sizeof(stack_t));
 
 	if (new_node == NULL)
 	{
@@ -32,7 +36,7 @@ void push(int value, stack_t **stack)
 /**
  * pop - pop
  */
-void pop()
+void pop(void)
 {
 
 	printf("popped\n");
@@ -73,3 +77,4 @@ void apply_operations(char *op, char *arg, stack_t *ST)
 	else if (!strcmp(op, "push"))
 		push(num, &ST);
 }
+#endif
