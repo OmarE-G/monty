@@ -1,15 +1,32 @@
 #include <stdio.h>
 #include "monty.h"
-
+#include <stdlib.h>
 /**
  * push - p
- * @x:  das
+ * @value : das
+ * @stack : stack
  */
-void push(char *x)
-{
-	int n = atoi(x);
 
-	printf("pushed %d\n", n);
+
+
+void push(int value, stack_t **stack)
+{
+	stack_t *new_node = malloc(sizeof(stack_t));
+
+	if (new_node == NULL)
+	{
+		printf("Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+
+	new_node->n = value;
+	new_node->prev = NULL;
+	new_node->next = *stack;
+
+	if (*stack != NULL)
+		(*stack)->prev = new_node;
+
+	*stack = new_node;
 }
 /**
  * pop - pop
@@ -21,18 +38,25 @@ void pop(void)
 }
 /**
  * pall - print
+ * @stack: stack ptr
  */
-void pall(void)
+void pall(stack_t *stack)
 {
 	printf("printing all\n");
+	while (stack != NULL)
+	{
+		printf("%d\n", stack->n);
+		stack = stack->next;
+	}
 }
 
 /**
  * apply_operations - applies ops
  * @op: op code
  * @arg: argument
+ * @ST: stack
  */
-void apply_operations(char *op, char *arg)
+void apply_operations(char *op, char *arg, stack_t *ST)
 {
 	int num;
 
@@ -42,7 +66,7 @@ void apply_operations(char *op, char *arg)
 	if (!strcmp(op, "pop"))
 		pop();
 	else if (!strcmp(op, "pall"))
-		pall();
+		pall(ST);
 	else if (!strcmp(op, "push"))
-		push(arg);
+		push(num, &ST);
 }

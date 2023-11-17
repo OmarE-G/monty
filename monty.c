@@ -3,6 +3,8 @@
 #include<string.h>
 #include <ctype.h>
 #include "monty.h"
+#include "ops.c"
+
 /**
 * isNumber - check if string is a number'
 * @s: string
@@ -27,6 +29,7 @@ int isNumber(char *s)
 */
 int main(int argc, char *args[])
 {
+	stack_t ST;
 	FILE *f;
 	char *curr_line;
 	char *curr_word;
@@ -82,7 +85,7 @@ int main(int argc, char *args[])
 					curr_op = curr_word, flag  = 1;
 					//printf("%s %s \n", curr_word, curr_op);
 				}	
-				if(strcmp(curr_word, "push") != 0) /*no need to wait for argument*/
+					if(strcmp(curr_word, "push") != 0) /*no need to wait for argument*/
 					flag = 2;
 				
 			}
@@ -99,7 +102,7 @@ int main(int argc, char *args[])
 			}
 			if(flag == 2)
 			{
-				apply_operations(curr_op, curr_arg);
+				apply_operations(curr_op, curr_arg, &ST);
 				break;	
 			}
 
