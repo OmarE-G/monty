@@ -1,14 +1,13 @@
 #include <stdio.h>
 #include "monty.h"
 #include <stdlib.h>
+#include <string.h>
+
 /**
  * push - p
  * @value : das
  * @stack : stack
  */
-
-
-
 void push(int value, stack_t **stack)
 {
 	stack_t *new_node = malloc(sizeof(stack_t));
@@ -28,14 +27,18 @@ void push(int value, stack_t **stack)
 
 	*stack = new_node;
 }
+
+
 /**
  * pop - pop
  */
-void pop(void)
+void pop()
 {
 
 	printf("popped\n");
 }
+
+
 /**
  * pall - print
  * @stack: stack ptr

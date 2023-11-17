@@ -2,9 +2,7 @@
 #include<stdlib.h>
 #include<string.h>
 #include <ctype.h>
-#include "monty.h"
-#include "ops.c"
-
+#include "ops.h"
 /**
 * isNumber - check if string is a number'
 * @s: string
@@ -12,7 +10,9 @@
 */
 int isNumber(char *s)
 {
-    for (int i = 0; s[i]!= '\0'; i++)
+	int i;
+
+    for (i = 0; s[i]!= '\0'; i++)
     {
         if (isdigit(s[i]) == 0)
               return 0;
@@ -83,7 +83,7 @@ int main(int argc, char *args[])
 				if ((strcmp(curr_word, "pop") == 0) || (strcmp(curr_word, "push") == 0) || (strcmp(curr_word, "pall") == 0))
 				{
 					curr_op = curr_word, flag  = 1;
-					//printf("%s %s \n", curr_word, curr_op);
+					
 				}	
 					if(strcmp(curr_word, "push") != 0) /*no need to wait for argument*/
 					flag = 2;
