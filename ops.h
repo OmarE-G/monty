@@ -26,8 +26,8 @@ void push(int value, stack_t **stack)
 	new_node->prev = NULL;
 	new_node->next = *stack;
 
-	if (*stack != NULL)
-		(*stack)->prev = new_node;
+	if (new_node->next != NULL)
+		(new_node->next)->prev = new_node;
 
 	*stack = new_node;
 }
@@ -49,7 +49,6 @@ void pop(void)
  */
 void pall(stack_t *stack)
 {
-	printf("printing all\n");
 	while (stack != NULL)
 	{
 		printf("%d\n", stack->n);
@@ -63,18 +62,20 @@ void pall(stack_t *stack)
  * @arg: argument
  * @ST: stack
  */
-void apply_operations(char *op, char *arg, stack_t *ST)
+void apply_operations(char *op, char *arg, stack_t **ST)
 {
 	int num;
 
+	if (ST == NULL)
+		printf("null\n");
 	if (arg != NULL)
 		num = atoi(arg);
 
 	if (!strcmp(op, "pop"))
 		pop();
 	else if (!strcmp(op, "pall"))
-		pall(ST);
+		pall(*ST);
 	else if (!strcmp(op, "push"))
-		push(num, &ST);
+		push(num, ST);
 }
 #endif

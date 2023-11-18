@@ -23,7 +23,7 @@ int isNumber(char *s)
  * @line: x
  * @ST: stack
  */
-void process_line(char *curr_line, int line, stack_t *ST)
+void process_line(char *curr_line, int line, stack_t **ST)
 {
 	int flag = 0;
 	char *temp = curr_line, *curr_op, *curr_arg, *curr_word;
@@ -74,13 +74,14 @@ void process_line(char *curr_line, int line, stack_t *ST)
 * @args: arguments as strings
 * Return: 0
 */
-
 int main(int argc, char *args[])
 {
-	stack_t ST;
 	FILE *f;
 	char *curr_line;
 	int line = 0;
+	stack_t *ST = NULL;
+
+
 
 	if (argc != 2)
 	{
