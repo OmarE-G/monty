@@ -25,50 +25,30 @@ int isNumber(char *s)
  */
 void process_line(char *curr_line, int line, stack_t **ST)
 {
-	int flag = 0;
-	char *temp = curr_line, *curr_op, *curr_arg, *curr_word;
+	char *temp = curr_line, *curr_op, *curr_arg = NULL, *curr_word;
 
-	do {
 		curr_word = strtok(temp, " \t \n");
 		temp = NULL;
 
 		if (curr_word == NULL)
+			return;
+
+		if ((strcmp(curr_word, "pop") == 0) ||
+		(strcmp(curr_word, "push") == 0) || (strcmp(curr_word, "pall") == 0))
+			curr_op = curr_word;
+		else
 		{
-			if (flag == 0)
-				break;
-			else if (flag == 1)
+			printf("L%d: unknown instruction %s\n", line, curr_word);
+			exit(EXIT_FAILURE);
+		}
+		if (strcmp(curr_word, "push") == 0)
+		{
+			curr_arg = strtok(temp, " \t \n");
+
+			if (curr_arg == NULL || !isNumber(curr_arg))
 				printf("L%d: usage: push integer\n", line),	exit(EXIT_FAILURE);
 		}
-
-		if (flag == 0)
-		{
-			if ((strcmp(curr_word, "pop") == 0) ||
-			(strcmp(curr_word, "push") == 0) || (strcmp(curr_word, "pall") == 0))
-				curr_op = curr_word, flag  = 1;
-			else 
-			{
-				printf("L%d: unknown instruction %s\n", line, curr_word);
-				exit(EXIT_FAILURE);
-			}
-			if (strcmp(curr_word, "push") != 0) /*no need to wait for argument*/
-				flag = 2;
-		}
-		else if (flag == 1)
-		{
-			if (isNumber(curr_word))
-				curr_arg = curr_word, flag = 2;
-
-			else
-				printf("L%d: usage: push integer\n", line), exit(EXIT_FAILURE);
-
-		}
-		if (flag == 2)
-		{
-			apply_operations(curr_op, curr_arg, ST);
-			break;
-		}
-
-	} while (curr_word != NULL && flag != 2);
+		apply_operations(curr_op, curr_arg, ST);
 
 }
 
