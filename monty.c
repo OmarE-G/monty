@@ -82,8 +82,8 @@ int main(int argc, char *args[])
 	}
 
 	/*start proceessing file line by line*/
-	curr_line = malloc(1000);
-	while (fgets(curr_line, 1000, f))
+	curr_line = malloc(50000);
+	while (fgets(curr_line, 50000, f))
 	{
 		line++;
 		process_line(curr_line, line, &ST);
