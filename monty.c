@@ -1,4 +1,4 @@
-#include "ops.h"
+#include "monty.h"
 /**
 * isNumber - check if string is a number'
 * @s: string

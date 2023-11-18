@@ -1,10 +1,5 @@
-#ifndef OPS_H
-#define OPS_H
-#include <stdio.h>
+
 #include "monty.h"
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
 
 
 /**
@@ -78,4 +73,4 @@ void apply_operations(char *op, char *arg, stack_t **ST)
 	else if (!strcmp(op, "push"))
 		push(num, ST);
 }
-#endif
+
