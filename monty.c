@@ -45,6 +45,11 @@ void process_line(char *curr_line, int line, stack_t **ST)
 			if ((strcmp(curr_word, "pop") == 0) ||
 			(strcmp(curr_word, "push") == 0) || (strcmp(curr_word, "pall") == 0))
 				curr_op = curr_word, flag  = 1;
+			else 
+			{
+				printf("L%d: unknown instruction %s\n", line, curr_word);
+				exit(EXIT_FAILURE);
+			}
 			if (strcmp(curr_word, "push") != 0) /*no need to wait for argument*/
 				flag = 2;
 		}
@@ -97,8 +102,8 @@ int main(int argc, char *args[])
 	}
 
 	/*start proceessing file line by line*/
-	curr_line = malloc(505);
-	while (fgets(curr_line, 500, f))
+	curr_line = malloc(1000);
+	while (fgets(curr_line, 1000, f))
 	{
 		line++;
 		process_line(curr_line, line, &ST);
