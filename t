@@ -1,2 +1,1 @@
-push 1
- push   a
+push 121

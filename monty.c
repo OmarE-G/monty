@@ -27,7 +27,7 @@ void process_line(char *curr_line, int line, stack_t **ST)
 {
 	char *temp = curr_line, *curr_op, *curr_arg = NULL, *curr_word;
 
-		curr_word = strtok(temp, " \t \n");
+		curr_word = strtok(temp, " \t \n\r");
 		temp = NULL;
 
 		if (curr_word == NULL)
@@ -43,7 +43,7 @@ void process_line(char *curr_line, int line, stack_t **ST)
 		}
 		if (strcmp(curr_word, "push") == 0)
 		{
-			curr_arg = strtok(temp, " \t \n");
+			curr_arg = strtok(temp, " \t \n\r");
 
 			if (curr_arg == NULL || !isNumber(curr_arg))
 				printf("L%d: usage: push integer\n", line),	exit(EXIT_FAILURE);
