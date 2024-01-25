@@ -18,7 +18,7 @@
  * (10) ~> The number inside a node is outside ASCII bounds.
  * (11) ~> The stack is empty.
  */
-void err (int error_code, ...)
+void err(int error_code, ...)
 {
 	va_list ag;
 	char *op;
@@ -45,7 +45,7 @@ void err (int error_code, ...)
 		case 5:
 			fprintf(stderr, "L%d: usage: push integer\n", va_arg(ag, int));
 			break;
-        case 6:
+		case 6:
 			fprintf(stderr, "L%d: can't pint, stack empty\n",
 				va_arg(ag, int));
 			break;
@@ -62,7 +62,7 @@ void err (int error_code, ...)
 			fprintf(stderr, "L%d: division by zero\n",
 				va_arg(ag, unsigned int));
 			break;
-        case 10:
+		case 10:
 			l_num = va_arg(ag, int);
 			fprintf(stderr, "L%d: can't pchar, value out of range\n", l_num);
 			break;
